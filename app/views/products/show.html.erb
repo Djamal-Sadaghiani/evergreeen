@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Isin:</strong>
+  <%= @product.isin %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Recommendations:</strong>
+  <%= @product.recommendations %>
+</p>
+
+<p>
+  <strong>Mean target price:</strong>
+  <%= @product.mean_target_price %>
+</p>
+
+<p>
+  <strong>Number of analysts:</strong>
+  <%= @product.number_of_analysts %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @product.ticker %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
