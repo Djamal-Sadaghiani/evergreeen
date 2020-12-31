@@ -5,6 +5,10 @@ class Product < ApplicationRecord
   has_many :trades
   after_create :get_ticker_by_isin
 
+  def get_price
+    self.trades.last.price
+  end
+
   def get_ticker_by_isin
     base_url = "https://query2.finance.yahoo.com/v1/finance/search?"
     params = {q: self.isin, quotesCount: 1, newsCount: 0}

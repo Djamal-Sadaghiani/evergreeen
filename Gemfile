@@ -41,7 +41,7 @@ gem 'sidekiq-scheduler'
 gem 'curb'
 
 gem 'rails_admin', '~> 2.0'
-
+gem 'google-api-client'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
