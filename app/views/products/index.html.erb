@@ -2,16 +2,18 @@
 
 <h1>Products</h1>
 
-<table id="index-table" class="display">
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
       <th>Isin</th>
       <th>Name</th>
+      <th>Ticker</th>
+      <th>Long Name</th>
+      <th>Equity Type</th>
       <th>Recommendations</th>
       <th>Mean target price</th>
       <th>Number of analysts</th>
-      <th>Ticker</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -19,16 +21,13 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.isin %></td>
-        <td><%= product.name %></td>
+        <td><%= link_to product.name, product %></td>
         <td><%= product.ticker %></td>
         <td><%= product.long_name %></td>
-        <td><%= product.type %></td>
+        <td><%= product.equity_type %></td>
         <td><%= product.recommendations %></td>
         <td><%= product.mean_target_price %></td>
         <td><%= product.number_of_analysts %></td>
-        
-
-        <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

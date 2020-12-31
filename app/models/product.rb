@@ -16,11 +16,11 @@ class Product < ApplicationRecord
     begin
     json = JSON.parse(response.body_str)
       self.ticker = json['quotes'][0]['symbol'] if json['quotes'][0]['symbol']
-      self.type = json['quotes'][0]['quoteType'] if json['quotes'][0]['quoteType']
+      self.equity_type = json['quotes'][0]['quoteType'] if json['quotes'][0]['quoteType']
       self.name = json['quotes'][0]['shortname'] if json['quotes'][0]['shortname']
       self.long_name = json['quotes'][0]['longname'] if json['quotes'][0]['longname']
       self.save
-      get_analyst_ratings if self.type == 'EQUITY'
+      get_analyst_ratings if self.equity_type == 'EQUITY'
     rescue
     end
   end
