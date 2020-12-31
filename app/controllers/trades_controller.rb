@@ -1,6 +1,6 @@
 class TradesController < ApplicationController
   before_action :set_trade, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!
   # GET /trades
   # GET /trades.json
   def index
