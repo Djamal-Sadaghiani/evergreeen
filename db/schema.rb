@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_070553) do
     t.integer "mean_target_price"
     t.integer "number_of_analysts"
     t.string "ticker"
+    t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["isin"], name: "index_products_on_isin", unique: true

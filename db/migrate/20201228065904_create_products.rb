@@ -7,6 +7,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.integer :mean_target_price
       t.integer :number_of_analysts
       t.string :ticker
+      t.string :type
 
       t.timestamps
     end
