@@ -2,8 +2,8 @@
 
 <h1>Trades</h1>
 
-<table id="index-table" class="display">
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
       <th>Trade uuid</th>
       <th>Isin</th>
@@ -11,7 +11,7 @@
       <th>Time</th>
       <th>Price</th>
       <th>Amount</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -20,11 +20,10 @@
       <tr>
         <td><%= trade.trade_uuid %></td>
         <td><%= trade.isin %></td>
-        <td><%= trade.name %></td>
+        <td><%= link_to trade.name, trade %></td>
         <td><%= trade.time %></td>
         <td><%= trade.price %></td>
         <td><%= trade.amount %></td>
-        <td><%= link_to 'Show', trade %></td>
         <td><%= link_to 'Edit', edit_trade_path(trade) %></td>
         <td><%= link_to 'Destroy', trade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

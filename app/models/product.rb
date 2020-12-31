@@ -3,21 +3,24 @@ require 'json'
 
 class Product < ApplicationRecord
   has_many :trades
-  after_create :get_ticker_by_isin
+  after_create :update_meta_data
 
   def get_price
     self.trades.last.price
   end
 
-  def get_ticker_by_isin
+  def update_meta_data
     base_url = "https://query2.finance.yahoo.com/v1/finance/search?"
     params = {q: self.isin, quotesCount: 1, newsCount: 0}
     response = Curl.get(base_url, params)
     begin
     json = JSON.parse(response.body_str)
       self.ticker = json['quotes'][0]['symbol'] if json['quotes'][0]['symbol']
+      self.equity_type = json['quotes'][0]['quoteType'] if json['quotes'][0]['quoteType']
+      self.name = json['quotes'][0]['shortname'] if json['quotes'][0]['shortname']
+      self.long_name = json['quotes'][0]['longname'] if json['quotes'][0]['longname']
       self.save
-      get_analyst_ratings
+      get_analyst_ratings if self.equity_type == 'EQUITY'
     rescue
     end
   end
@@ -39,4 +42,5 @@ class Product < ApplicationRecord
     rescue
     end
   end
+
 end
