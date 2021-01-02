@@ -9,6 +9,6 @@
 
 :schedule:
   LsTradesJob:
-    cron: '*/15 * * * *'
-    queue: scheduler
+    every: '15m'
+    queue: default
     enabled: true
