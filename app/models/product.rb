@@ -21,6 +21,7 @@ class Product < ApplicationRecord
       self.long_name = json['quotes'][0]['longname'] if json['quotes'][0]['longname']
       self.save
       get_analyst_ratings if self.equity_type == 'EQUITY'
+      #get_price_potential if self.mean_target_price != null #to be fixed
     rescue
     end
   end
@@ -36,11 +37,21 @@ class Product < ApplicationRecord
       return if data['quoteSummary']['result'].nil?
       record = data['quoteSummary']['result'][0]['financialData']
       self.recommendations = record['recommendationMean']['fmt']
-      self.mean_target_price = record['targetMeanPrice']['fmt']
+      puts "Currency: "
+      puts record['financialCurrency'] 
+      if record['financialCurrency'] == "USD"
+        self.mean_target_price = record['targetMeanPrice']['fmt']/1.22
+      else
+        self.mean_target_price = record['targetMeanPrice']['fmt']
+      end 
       self.number_of_analysts = record['numberOfAnalystOpinions']['fmt']
       self.save
+      byebug
     rescue
     end
   end
 
+  def get_price_potential
+    self.price_potential = self.mean_target_price / self.price
+  end
 end
