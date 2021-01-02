@@ -46,7 +46,6 @@ class Product < ApplicationRecord
       end 
       self.number_of_analysts = record['numberOfAnalystOpinions']['fmt']
       self.save
-      byebug
     rescue
     end
   end
