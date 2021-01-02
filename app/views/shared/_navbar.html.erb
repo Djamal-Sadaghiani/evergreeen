@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/271/evergreen-tree_1f332.png" %>
+    <%= image_tag "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/271/evergreen-tree_1f332.png" %> Evergreen
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,6 +8,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <%= link_to "Impressum", pages_impressum_path, class: "nav-link"%>
+    </li>
       <li class="nav-item active">
           <%= link_to "All Products", products_path, class: "nav-link"%>
       </li>
@@ -25,6 +28,17 @@
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
+          <li class="nav-item">
+          <% if current_user %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+          Log out
+          <% end %>
+          <% else  %>
+          <%= link_to new_user_session_path, class: "nav-link" do %>
+          Log In
+          <% end %>
+          <% end %>
+        </li>
         </li>
       <% else %>
         <li class="nav-item">
