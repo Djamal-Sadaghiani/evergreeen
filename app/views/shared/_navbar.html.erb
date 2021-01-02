@@ -29,14 +29,8 @@
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
           <li class="nav-item">
-          <% if current_user %>
           <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
           Log out
-          <% end %>
-          <% else  %>
-          <%= link_to new_user_session_path, class: "nav-link" do %>
-          Log In
-          <% end %>
           <% end %>
         </li>
         </li>
