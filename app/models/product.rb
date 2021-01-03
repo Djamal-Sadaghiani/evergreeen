@@ -1,6 +1,5 @@
 require 'curb'
 require 'json'
-require 'money'
 
 class Product < ApplicationRecord
   has_many :trades
