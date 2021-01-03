@@ -1,57 +1,57 @@
 <%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<% if product.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :isin %>
-    <%= form.text_field :isin %>
-  </div>
+<div class="field form-group">
+  <%= form.label :isin %>
+  <%= form.text_field :isin, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+<div class="field form-group">
+  <%= form.label :name %>
+  <%= form.text_field :name, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :long_name %>
-    <%= form.text_field :long_name %>
-  </div>
+<div class="field form-group">
+  <%= form.label :long_name %>
+  <%= form.text_field :long_name, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :equity_type %>
-    <%= form.text_field :equity_type %>
-  </div>
+<div class="field form-group">
+  <%= form.label :equity_type %>
+  <%= form.text_field :equity_type, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :recommendations %>
-    <%= form.number_field :recommendations %>
-  </div>
+<div class="field form-group">
+  <%= form.label :recommendations %>
+  <%= form.number_field :recommendations, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :mean_target_price %>
-    <%= form.number_field :mean_target_price %>
-  </div>
+<div class="field form-group">
+  <%= form.label :mean_target_price %>
+  <%= form.number_field :mean_target_price, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :number_of_analysts %>
-    <%= form.number_field :number_of_analysts %>
-  </div>
+<div class="field form-group">
+  <%= form.label :number_of_analysts %>
+  <%= form.number_field :number_of_analysts, class:"form-control" %>
+</div>
 
-  <div class="field">
-    <%= form.label :ticker %>
-    <%= form.text_field :ticker %>
-  </div>
+<div class="field form-group">
+  <%= form.label :ticker %>
+  <%= form.text_field :ticker, class:"form-control" %>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="actions">
+  <%= form.submit %>
+</div>
 <% end %>
