@@ -1,44 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Isin:</strong>
-  <%= @product.isin %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Long Name:</strong>
-  <%= @product.long_name %>
-</p>
-
-<p>
-  <strong>Equity Type:</strong>
-  <%= @product.equity_type %>
-</p>
-
-<p>
-  <strong>Recommendations:</strong>
-  <%= @product.recommendations %>
-</p>
-
-<p>
-  <strong>Mean target price:</strong>
-  <%= @product.mean_target_price %>
-</p>
-
-<p>
-  <strong>Number of analysts:</strong>
-  <%= @product.number_of_analysts %>
-</p>
-
-<p>
-  <strong>Ticker:</strong>
-  <%= @product.ticker %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @product.name %></h1>
+  <br>
+  <p class="lead">ISIN: <%= @product.isin %></p>
+  <p class="lead">Long Name: <%= @product.long_name %></p>
+  <p class="lead">Equity Type: <%= @product.equity_type %></p>
+  <p class="lead">Recommendations: <%= @product.recommendations %></p>
+  <p class="lead">Mean target price: <%= @product.mean_target_price %></p>
+  <p class="lead">Number of analysts: <%= @product.number_of_analysts %></p>
+  <p class="lead">Ticker: <%= @product.ticker %></p>
+  <%= link_to 'Edit', edit_product_path(@product), class:"btn btn-secondary"%>
+  <%= link_to 'Back', products_path, class:"btn btn-secondary"%>
+  </p>
+</div>

@@ -3,10 +3,10 @@
 <h1>Products</h1>
 
 <%= link_to 'New Product', new_product_path, class:"btn btn-secondary"%>
-<br/>
-<br/>
+<br />
+<br />
 
-<table class="table table-striped table-hover">
+<table data-toggle="table">
   <thead class="thead-dark">
     <tr>
       <th>Isin</th>
@@ -14,30 +14,36 @@
       <th>Ticker</th>
       <th>Long Name</th>
       <th>Equity Type</th>
-      <th>Recommendations</th>
-      <th>Mean target price</th>
+      <th>L&S Last Price EUR</th>
+      <th>Recommendations (1 best - 5 worst)</th>
+      <th>Price Potential (Target Price/ Last Price)</th>
+      <th>Mean target price EUR</th>
+      <th>Yahoo Last Price EUR</th>
       <th>Number of analysts</th>
+      <th>Base Currency</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.isin %></td>
-        <td><%= link_to product.name, product %></td>
-        <td><%= product.ticker %></td>
-        <td><%= product.long_name %></td>
-        <td><%= product.equity_type %></td>
-        <td><%= product.recommendations %></td>
-        <td><%= product.mean_target_price %></td>
-        <td><%= product.number_of_analysts %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= product.isin %></td>
+      <td><%= link_to product.name, product %></td>
+      <td><%= product.ticker %></td>
+      <td><%= product.long_name %></td>
+      <td><%= product.equity_type %></td>
+      <td>€ <%= (product.get_price.to_d / 10000) if !product.get_price.nil? %></td>
+      <td><%= product.recommendations %></td>
+      <td><%= (product.price_potential*100).to_i if !product.price_potential.nil?%>%</td>
+      <td>€ <%= (product.mean_target_price.to_d / 10000) if !product.mean_target_price.nil?  %></td>
+      <td>€ <%= (product.price_yahoo.to_d / 10000) if !product.price_yahoo.nil?  %></td>
+      <td><%= product.number_of_analysts %></td>
+      <td><%= product.currency_base%></td>
+      <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-outline-dark btn-sm" %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-

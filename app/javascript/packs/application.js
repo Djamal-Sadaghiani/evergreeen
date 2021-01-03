@@ -20,3 +20,14 @@ require('datatables.net-bs4')($);
 $(document).ready( function () {
     $('#index-table').DataTable();
 } );
+
+/* import 'bootstrap'
+
+
+
+require("jquery-ui")
+import "@fortawesome/fontawesome-free/js/all";
+require("leaflet");
+require("easy-autocomplete")
+ */
+//= require bootstrap-table/bootstrap-table
