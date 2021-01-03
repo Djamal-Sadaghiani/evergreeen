@@ -14,7 +14,6 @@ class Product < ApplicationRecord
     base_url = "https://query2.finance.yahoo.com/v1/finance/search?"
     params = {q: self.isin, quotesCount: 1, newsCount: 0}
     response = Curl.get(base_url, params)
-    p response
     begin
     json = JSON.parse(response.body_str)
       self.ticker = json['quotes'][0]['symbol'] if json['quotes'][0]['symbol']
@@ -55,5 +54,11 @@ class Product < ApplicationRecord
       self.price_potential = ((record['targetMeanPrice']['raw'].to_f / record['currentPrice']['raw'].to_f)-1) if !record['targetMeanPrice']['raw'].to_f.nil? && record['targetMeanPrice']['raw'].to_f > 0
       self.save
   end
+
+  def get_price_potential
+    (((self.mean_target_price.to_f / get_price.to_f) - 1) * 100) if !self.mean_target_price.nil? && !get_price.nil?
+    #binding.pry
+  end
+
 
 end

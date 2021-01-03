@@ -14,7 +14,7 @@
       <th>Equity Type</th>
       <th class="right-align">L&S Last Price EUR</th>
       <th>Recommendations (1 best - 5 worst)</th>
-      <th>Price Potential (Target Price/ Last Price)</th>
+      <th class="right-align">Price Potential (Target Price/ Last Price)</th>
       <th class="right-align">Mean target price EUR</th>
       <th class="right-align">Yahoo Last Price EUR</th>
       <th>Number of analysts</th>
@@ -29,11 +29,11 @@
       <td><%= link_to product.name, product %></td>
       <td><%= product.ticker %></td>
       <td><%= product.equity_type %></td>
-      <td class="right-align">€ <%= (product.get_price.to_d / 10000).round(2) if !product.get_price.nil? %></td>
+      <td class="right-align">€ <%= (product.get_price.to_d / 10000)&.round(2) %></td>
       <td><%= product.recommendations %></td>
-      <td><%= (product.price_potential*100).to_i if !product.price_potential.nil?%>%</td>
-      <td class="right-align">€ <%= (product.mean_target_price.to_d / 10000).round(2) if !product.mean_target_price.nil?  %></td>
-      <td class="right-align">€ <%= (product.price_yahoo.to_d / 10000).round(2) if !product.price_yahoo.nil?  %></td>
+      <td class="right-align"><%= product.get_price_potential&.round(0)%>%</td>
+      <td class="right-align">€ <%= (product.mean_target_price.to_d / 10000)&.round(2) %></td>
+      <td class="right-align">€ <%= (product.price_yahoo.to_d / 10000)&.round(2) %></td>
       <td><%= product.number_of_analysts %></td>
       <td><%= product.currency_base%></td>
       <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-outline-dark btn-sm" %></td>

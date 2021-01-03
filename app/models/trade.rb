@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Trade < ApplicationRecord
   belongs_to :product, optional: true
   validates :name, :isin, :amount, :price, :time, :trade_uuid, presence: true
@@ -7,15 +9,14 @@ class Trade < ApplicationRecord
   private
 
   def create_or_find_product
-    product = Product.where("isin = ?", self.isin)
+    product = Product.where('isin = ?', isin)
     if product.empty?
-      product = Product.create(name: self.name, isin: self.isin)
+      product = Product.create(name: name, isin: isin)
       self.product = p
-      self.save
-    else 
+      save
+    else
       self.product = product.first
-      self.save
+      save
     end
   end
-
 end
