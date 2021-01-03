@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :income_statements
   root to: 'pages#home'
   get 'pages/impressum'
   resources :trades

@@ -1,0 +1,44 @@
+
+<%= simple_form_for(@income_statement) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :period %>
+    <%= f.input :date %>
+    <%= f.input :total_revenue %>
+    <%= f.input :cost_of_revenue %>
+    <%= f.input :gross_profit %>
+    <%= f.input :operating_expense %>
+    <%= f.input :operating_income %>
+    <%= f.input :net_non_operating_interest_income_expense %>
+    <%= f.input :other_income_expense %>
+    <%= f.input :pretax_income %>
+    <%= f.input :tax_provision %>
+    <%= f.input :net_income_common_stockholders %>
+    <%= f.input :diluted_ni_available_to_com_stockholders %>
+    <%= f.input :basic_eps %>
+    <%= f.input :diluted_eps %>
+    <%= f.input :basic_average_shares %>
+    <%= f.input :diluted_average_shares %>
+    <%= f.input :total_operating_income_as_reported %>
+    <%= f.input :total_expenses %>
+    <%= f.input :net_income_from_continuing_and_discontinued_operation %>
+    <%= f.input :normalized_income %>
+    <%= f.input :interest_income %>
+    <%= f.input :interest_expense %>
+    <%= f.input :net_interest_income %>
+    <%= f.input :ebit %>
+    <%= f.input :ebitda %>
+    <%= f.input :reconciled_cost_of_revenue %>
+    <%= f.input :reconciled_depreciation %>
+    <%= f.input :net_income_from_continuing_operation_net_minority_interest %>
+    <%= f.input :normalized_ebitda %>
+    <%= f.input :tax_rate_for_calcs %>
+    <%= f.input :tax_effect_of_unusual_items %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -2,7 +2,7 @@ require 'curb'
 require 'json'
 
 class Product < ApplicationRecord
-  has_many :trades
+  has_many :trades, :income_statements
   after_create :update_meta_data
 
   def get_price

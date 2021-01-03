@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Income Statements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Period</th>
+      <th>Date</th>
+      <th>Total revenue</th>
+      <th>Cost of revenue</th>
+      <th>Gross profit</th>
+      <th>Operating expense</th>
+      <th>Operating income</th>
+      <th>Net non operating interest income expense</th>
+      <th>Other income expense</th>
+      <th>Pretax income</th>
+      <th>Tax provision</th>
+      <th>Net income common stockholders</th>
+      <th>Diluted ni available to com stockholders</th>
+      <th>Basic eps</th>
+      <th>Diluted eps</th>
+      <th>Basic average shares</th>
+      <th>Diluted average shares</th>
+      <th>Total operating income as reported</th>
+      <th>Total expenses</th>
+      <th>Net income from continuing and discontinued operation</th>
+      <th>Normalized income</th>
+      <th>Interest income</th>
+      <th>Interest expense</th>
+      <th>Net interest income</th>
+      <th>Ebit</th>
+      <th>Ebitda</th>
+      <th>Reconciled cost of revenue</th>
+      <th>Reconciled depreciation</th>
+      <th>Net income from continuing operation net minority interest</th>
+      <th>Normalized ebitda</th>
+      <th>Tax rate for calcs</th>
+      <th>Tax effect of unusual items</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @income_statements.each do |income_statement| %>
+      <tr>
+        <td><%= income_statement.period %></td>
+        <td><%= income_statement.date %></td>
+        <td><%= income_statement.total_revenue %></td>
+        <td><%= income_statement.cost_of_revenue %></td>
+        <td><%= income_statement.gross_profit %></td>
+        <td><%= income_statement.operating_expense %></td>
+        <td><%= income_statement.operating_income %></td>
+        <td><%= income_statement.net_non_operating_interest_income_expense %></td>
+        <td><%= income_statement.other_income_expense %></td>
+        <td><%= income_statement.pretax_income %></td>
+        <td><%= income_statement.tax_provision %></td>
+        <td><%= income_statement.net_income_common_stockholders %></td>
+        <td><%= income_statement.diluted_ni_available_to_com_stockholders %></td>
+        <td><%= income_statement.basic_eps %></td>
+        <td><%= income_statement.diluted_eps %></td>
+        <td><%= income_statement.basic_average_shares %></td>
+        <td><%= income_statement.diluted_average_shares %></td>
+        <td><%= income_statement.total_operating_income_as_reported %></td>
+        <td><%= income_statement.total_expenses %></td>
+        <td><%= income_statement.net_income_from_continuing_and_discontinued_operation %></td>
+        <td><%= income_statement.normalized_income %></td>
+        <td><%= income_statement.interest_income %></td>
+        <td><%= income_statement.interest_expense %></td>
+        <td><%= income_statement.net_interest_income %></td>
+        <td><%= income_statement.ebit %></td>
+        <td><%= income_statement.ebitda %></td>
+        <td><%= income_statement.reconciled_cost_of_revenue %></td>
+        <td><%= income_statement.reconciled_depreciation %></td>
+        <td><%= income_statement.net_income_from_continuing_operation_net_minority_interest %></td>
+        <td><%= income_statement.normalized_ebitda %></td>
+        <td><%= income_statement.tax_rate_for_calcs %></td>
+        <td><%= income_statement.tax_effect_of_unusual_items %></td>
+        <td><%= link_to 'Show', income_statement %></td>
+        <td><%= link_to 'Edit', edit_income_statement_path(income_statement) %></td>
+        <td><%= link_to 'Destroy', income_statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Income Statement', new_income_statement_path %>
