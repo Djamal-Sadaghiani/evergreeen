@@ -67,6 +67,9 @@ ActiveRecord::Schema.define(version: 2021_01_02_214009) do
     t.string "equity_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "price_potential"
+    t.string "currency_base"
+    t.integer "price_yahoo"
     t.index ["isin"], name: "index_products_on_isin", unique: true
   end
 
