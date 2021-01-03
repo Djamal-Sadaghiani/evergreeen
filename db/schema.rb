@@ -10,10 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_28_070553) do
+ActiveRecord::Schema.define(version: 2021_01_02_214009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "income_statements", force: :cascade do |t|
+    t.string "period"
+    t.date "date"
+    t.integer "total_revenue"
+    t.integer "cost_of_revenue"
+    t.integer "gross_profit"
+    t.integer "operating_expense"
+    t.integer "operating_income"
+    t.integer "net_non_operating_interest_income_expense"
+    t.integer "other_income_expense"
+    t.integer "pretax_income"
+    t.integer "tax_provision"
+    t.integer "net_income_common_stockholders"
+    t.integer "diluted_ni_available_to_com_stockholders"
+    t.integer "basic_eps"
+    t.integer "diluted_eps"
+    t.integer "basic_average_shares"
+    t.integer "diluted_average_shares"
+    t.integer "total_operating_income_as_reported"
+    t.integer "total_expenses"
+    t.integer "net_income_from_continuing_and_discontinued_operation"
+    t.integer "normalized_income"
+    t.integer "interest_income"
+    t.integer "interest_expense"
+    t.integer "net_interest_income"
+    t.integer "ebit"
+    t.integer "ebitda"
+    t.integer "reconciled_cost_of_revenue"
+    t.integer "reconciled_depreciation"
+    t.integer "net_income_from_continuing_operation_net_minority_interest"
+    t.integer "normalized_ebitda"
+    t.integer "tax_rate_for_calcs"
+    t.integer "tax_effect_of_unusual_items"
+    t.bigint "product_id"
+    t.string "income_statement_uuid", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["income_statement_uuid"], name: "index_income_statements_on_income_statement_uuid", unique: true
+    t.index ["product_id"], name: "index_income_statements_on_product_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "isin", null: false
@@ -56,5 +97,6 @@ ActiveRecord::Schema.define(version: 2020_12_28_070553) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "income_statements", "products"
   add_foreign_key "trades", "products"
 end
