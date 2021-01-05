@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class IncomeStatementsController < ApplicationController
-  before_action :set_income_statement, only: [:show, :edit, :update, :destroy]
+  before_action :set_income_statement, only: %i[show edit update destroy]
 
   # GET /income_statements
   # GET /income_statements.json
@@ -9,8 +11,7 @@ class IncomeStatementsController < ApplicationController
 
   # GET /income_statements/1
   # GET /income_statements/1.json
-  def show
-  end
+  def show; end
 
   # GET /income_statements/new
   def new
@@ -18,8 +19,7 @@ class IncomeStatementsController < ApplicationController
   end
 
   # GET /income_statements/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /income_statements
   # POST /income_statements.json
@@ -62,13 +62,15 @@ class IncomeStatementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_income_statement
-      @income_statement = IncomeStatement.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def income_statement_params
-      params.require(:income_statement).permit(:period, :date, :total_revenue, :cost_of_revenue, :gross_profit, :operating_expense, :operating_income, :net_non_operating_interest_income_expense, :other_income_expense, :pretax_income, :tax_provision, :net_income_common_stockholders, :diluted_ni_available_to_com_stockholders, :basic_eps, :diluted_eps, :basic_average_shares, :diluted_average_shares, :total_operating_income_as_reported, :total_expenses, :net_income_from_continuing_and_discontinued_operation, :normalized_income, :interest_income, :interest_expense, :net_interest_income, :ebit, :ebitda, :reconciled_cost_of_revenue, :reconciled_depreciation, :net_income_from_continuing_operation_net_minority_interest, :normalized_ebitda, :tax_rate_for_calcs, :tax_effect_of_unusual_items)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_income_statement
+    @income_statement = IncomeStatement.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def income_statement_params
+    params.require(:income_statement).permit(:period, :date, :total_revenue, :cost_of_revenue, :gross_profit,
+                                             :operating_expense, :operating_income, :net_non_operating_interest_income_expense, :other_income_expense, :pretax_income, :tax_provision, :net_income_common_stockholders, :diluted_ni_available_to_com_stockholders, :basic_eps, :diluted_eps, :basic_average_shares, :diluted_average_shares, :total_operating_income_as_reported, :total_expenses, :net_income_from_continuing_and_discontinued_operation, :normalized_income, :interest_income, :interest_expense, :net_interest_income, :ebit, :ebitda, :reconciled_cost_of_revenue, :reconciled_depreciation, :net_income_from_continuing_operation_net_minority_interest, :normalized_ebitda, :tax_rate_for_calcs, :tax_effect_of_unusual_items)
+  end
 end

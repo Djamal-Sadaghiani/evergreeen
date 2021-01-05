@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateIncomeStatements < ActiveRecord::Migration[6.0]
   def change
     create_table :income_statements do |t|
@@ -40,7 +42,5 @@ class CreateIncomeStatements < ActiveRecord::Migration[6.0]
     end
 
     add_index :income_statements, :income_statement_uuid, unique: true
-
-
   end
 end

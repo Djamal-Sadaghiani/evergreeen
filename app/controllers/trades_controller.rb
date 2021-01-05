@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TradesController < ApplicationController
-  before_action :set_trade, only: [:show, :edit, :update, :destroy]
+  before_action :set_trade, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!
   # GET /trades
   # GET /trades.json
@@ -9,8 +11,7 @@ class TradesController < ApplicationController
 
   # GET /trades/1
   # GET /trades/1.json
-  def show
-  end
+  def show; end
 
   # GET /trades/new
   def new
@@ -18,8 +19,7 @@ class TradesController < ApplicationController
   end
 
   # GET /trades/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /trades
   # POST /trades.json
@@ -62,13 +62,14 @@ class TradesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trade
-      @trade = Trade.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def trade_params
-      params.require(:trade).permit(:trade_uuid, :isin, :name, :time, :price, :amount)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trade
+    @trade = Trade.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def trade_params
+    params.require(:trade).permit(:trade_uuid, :isin, :name, :time, :price, :amount)
+  end
 end

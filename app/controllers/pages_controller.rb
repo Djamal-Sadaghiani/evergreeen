@@ -1,11 +1,9 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :impressum]
+  skip_before_action :authenticate_user!, only: %i[home impressum]
 
-  def impressum
-  end
+  def impressum; end
 
-
-  def home
-  end
-
+  def home; end
 end
