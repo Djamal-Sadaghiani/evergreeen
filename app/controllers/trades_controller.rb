@@ -6,7 +6,7 @@ class TradesController < ApplicationController
   # GET /trades
   # GET /trades.json
   def index
-    @trades = Trade.all
+    @trades = Trade.paginate(page: params[:page], per_page: 100)
   end
 
   # GET /trades/1

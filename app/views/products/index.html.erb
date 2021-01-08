@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
-
-<%= link_to 'New Product', new_product_path, class:"btn btn-secondary"%>
 <br />
+<%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 <br />
-
-<table data-toggle="table">
+<table class="table table-striped ">
   <thead class="thead-dark">
     <tr>
       <th>Name</th>
@@ -40,10 +38,9 @@
       <td>€ <%= (VolumeCalculator.call({product: product, startdate: 1.day.ago, enddate: Time.now}) / 1000000) %></td>
       <td><%= product.currency_base%></td>
       <td><%= product.stock_analyzer%></td>
-      <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-outline-dark btn-sm" %></td>
+      <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-dark" %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>

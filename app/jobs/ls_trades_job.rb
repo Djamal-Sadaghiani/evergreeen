@@ -23,6 +23,4 @@ class LsTradesJob < ApplicationJob
   def download_trades
     `wget https://www.ls-x.de/_rpc/json/.lstc/instrument/list/lsxtradestoday -O trades.csv`
   end
-
-  def update_gsheet; end
 end
