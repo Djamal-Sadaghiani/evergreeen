@@ -29,6 +29,6 @@ class Product < ApplicationRecord
     self.stock_analyzer = ProductAnalyzer::StockAnalyzer.call({ price_potential: price_potential,
                                                                 number_of_analysts: number_of_analysts })
 
-    save
+    self.save
   end
 end
