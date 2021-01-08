@@ -31,7 +31,12 @@
       <td><%= product.equity_type %></td>
       <td class="right-align">€ <%= (product.get_price.to_d / 10000)&.round(2) %></td>
       <td><%= product.recommendations %></td>
+      <%
+=begin%>
       <td class="right-align"><%= product.get_price_potential&.round(0)%>%</td>
+      <%
+=end%>
+      <td class="right-align"><%= (product.price_potential&.*100)&.round(0).to_i %>%</td>
       <td class="right-align">€ <%= (product.mean_target_price.to_d / 10000)&.round(2) %></td>
       <td class="right-align">€ <%= (product.price_yahoo.to_d / 10000)&.round(2) %></td>
       <td><%= product.number_of_analysts %></td>
