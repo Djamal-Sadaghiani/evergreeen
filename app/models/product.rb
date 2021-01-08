@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'curb'
 require 'json'
 
@@ -11,59 +13,22 @@ class Product < ApplicationRecord
   end
 
   def update_meta_data
-    base_url = 'https://query2.finance.yahoo.com/v1/finance/search?'
-    params = { q: isin, quotesCount: 1, newsCount: 0 }
-    response = Curl.get(base_url, params)
-    begin
-      json = JSON.parse(response.body_str)
-      self.ticker = json['quotes'][0]['symbol'] if json['quotes'][0]['symbol']
-      self.equity_type = json['quotes'][0]['quoteType'] if json['quotes'][0]['quoteType']
-      self.name = json['quotes'][0]['shortname'] if json['quotes'][0]['shortname']
-      self.long_name = json['quotes'][0]['longname'] if json['quotes'][0]['longname']
-      save
-      get_analyst_ratings if equity_type == 'EQUITY'
-    rescue StandardError
-    end
-  end
+    product_data = YahooManager::ProductDataScraper.call({ isin: isin })
 
-  def get_stockdata_by_ticker
-    url = "https://query2.finance.yahoo.com/v10/finance/quoteSummary/#{ticker}?modules=financialData"
-    JSON.parse(Curl.get(url).body_str)
-  end
+    self.ticker = product_data[:ticker]
+    self.equity_type = product_data[:equity_type]
+    self.name = product_data[:name]
+    self.long_name = product_data[:long_name]
+    self.recommendations = product_data[:recommendations]
+    self.currency_base = product_data[:currency_base]
+    self.mean_target_price = product_data[:mean_target_price]
+    self.price_yahoo = product_data[:price_yahoo]
+    self.number_of_analysts = product_data[:number_of_analysts]
+    self.price_potential = product_data[:price_potential]
 
-  def get_currency_base
-    url = "https://query2.finance.yahoo.com/v7/finance/quote?formatted=true&crumb=HHMob3hrkL9&lang=de-DE&region=DE&symbols=#{ticker}&fields=messageBoardId%2ClongName%2CshortName%2CmarketCap%2CunderlyingSymbol%2CunderlyingExchangeSymbol%2CheadSymbolAsString%2CregularMarketPrice%2CregularMarketChange%2CregularMarketChangePercent%2CregularMarketVolume%2Cuuid%2CregularMarketOpen%2CfiftyTwoWeekLow%2CfiftyTwoWeekHigh%2CtoCurrency%2CfromCurrency%2CtoExchange%2CfromExchange&corsDomain=de.finance.yahoo.com"
-    JSON.parse(Curl.get(url).body_str)
-  end
+    self.stock_analyzer = ProductAnalyzer::StockAnalyzer.call({ price_potential: price_potential,
+                                                                number_of_analysts: number_of_analysts })
 
-  def get_analyst_ratings
-    data = get_stockdata_by_ticker
-    return if data['quoteSummary']['result'].nil?
-
-    record = data['quoteSummary']['result'][0]['financialData']
-    self.recommendations = record['recommendationMean']['raw']
-    unless get_currency_base['quoteResponse']['result'].nil?
-      self.currency_base = get_currency_base['quoteResponse']['result'][0]['currency']
-    end
-
-    if currency_base == 'EUR'
-      self.mean_target_price = record['targetMeanPrice']['raw'].to_f * 10_000
-      self.price_yahoo = record['currentPrice']['raw'].to_f * 10_000
-    else
-      self.mean_target_price = YahooManager::CurrencyConverter.call({ currency: currency_base,
-                                                                      amount: (record['targetMeanPrice']['raw'].to_f * 10_000) })
-      self.price_yahoo = YahooManager::CurrencyConverter.call({ currency: currency_base,
-                                                                amount: (record['currentPrice']['raw'].to_f * 10_000) })
-    end
-    self.number_of_analysts = record['numberOfAnalystOpinions']['fmt']
-    if !record['targetMeanPrice']['raw'].to_f.nil? && record['targetMeanPrice']['raw'].to_f > 0
-      self.price_potential = ((record['targetMeanPrice']['raw'].to_f / record['currentPrice']['raw']) - 1)
-    end
     save
-  end
-
-  def get_price_potential
-    (((mean_target_price.to_f / get_price) - 1) * 100) if !mean_target_price.nil? && !get_price.nil?
-    # binding.pry
   end
 end
