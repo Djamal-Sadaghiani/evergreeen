@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   after_create :update_meta_data
 
   def get_price
-    self.trades.last&.price
+    trades.last&.price
   end
 
   def update_meta_data
@@ -28,5 +28,3 @@ class Product < ApplicationRecord
 
     self.save
   end
-
-end

@@ -18,6 +18,7 @@
       <th class="right-align">Mean target price EUR</th>
       <th class="right-align">Yahoo Last Price EUR</th>
       <th>Number of analysts</th>
+      <th>Volume (24h) in T</th>
       <th>Base Currency</th>
       <th>Recommendation</th>
       <th colspan="2"></th>
@@ -36,6 +37,7 @@
       <td class="right-align">€ <%= (product.mean_target_price.to_d / 10000)&.round(2) %></td>
       <td class="right-align">€ <%= (product.price_yahoo.to_d / 10000)&.round(2) %></td>
       <td><%= product.number_of_analysts %></td>
+      <td>€ <%= (VolumeCalculator.call({product: product, startdate: 1.day.ago, enddate: Time.now}) / 1000000) %></td>
       <td><%= product.currency_base%></td>
       <td><%= product.stock_analyzer%></td>
       <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-outline-dark btn-sm" %></td>
