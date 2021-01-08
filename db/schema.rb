@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_103_171_858) do
+ActiveRecord::Schema.define(version: 20_210_108_181_847) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20_210_103_171_858) do
     t.decimal 'price_potential'
     t.string 'currency_base'
     t.integer 'price_yahoo'
+    t.string 'stock_analyzer'
     t.index ['isin'], name: 'index_products_on_isin', unique: true
   end
 
