@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'curb'
 require 'json'
 
@@ -56,7 +58,7 @@ class Product < ApplicationRecord
                                                                 amount: (record['currentPrice']['raw'].to_f * 10_000) })
     end
     self.number_of_analysts = record['numberOfAnalystOpinions']['fmt']
-    if !record['targetMeanPrice']['raw'].to_f.nil? && record['targetMeanPrice']['raw'].to_f > 0
+    if !record['targetMeanPrice']['raw'].to_f.nil? && record['targetMeanPrice']['raw'].to_f.positive?
       self.price_potential = ((record['targetMeanPrice']['raw'].to_f / record['currentPrice']['raw']) - 1)
     end
     save

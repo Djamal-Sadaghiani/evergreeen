@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module YahooManager
   class CurrencyConverter < ApplicationService
     def initialize(params)

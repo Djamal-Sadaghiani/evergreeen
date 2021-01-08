@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VolumeCalculator < ApplicationService
   def initialize(params)
     @product = params[:product]
