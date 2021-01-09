@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
       @products = Product.where(id: results).paginate(page: params[:page], per_page: 100)
 
     else
-      @products = Product.paginate(page: params[:page], per_page: 100)
+      @products = Product.all.order(:name).paginate(page: params[:page], per_page: 100)
     end
   end
 
