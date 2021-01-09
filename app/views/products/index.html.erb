@@ -1,9 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
-<br />
-<%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-<br />
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm">
+      <h1>Products</h1>
+    </div>
+
+    <div class="col-sm">
+      <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+
+    <div class="col-sm">
+      <div class="searchbar">
+        <%= form_tag products_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search for Products"
+        %>
+        <% end %>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<br>
+
+
 <table class="table table-striped ">
   <thead class="thead-dark">
     <tr>
