@@ -21,6 +21,6 @@ class LsTradesJob < ApplicationJob
   end
 
   def download_trades
-    `wget https://www.ls-x.de/_rpc/json/.lstc/instrument/list/lsxtradestoday -O trades.csv`
+    `wget https://www.ls-x.de/_rpc/json/.lstc/instrument/list/lsxtradesyesterday -O trades.csv`
   end
 end
