@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_108_181_847) do
+ActiveRecord::Schema.define(version: 20_210_109_163_153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'currencies', force: :cascade do |t|
+    t.string 'currency_ISO'
+    t.float 'exchange_rate_to_EUR'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['currency_ISO'], name: 'index_currencies_on_currency_ISO', unique: true
+  end
 
   create_table 'income_statements', force: :cascade do |t|
     t.string 'period'
