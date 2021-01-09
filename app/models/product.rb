@@ -15,16 +15,16 @@ class Product < ApplicationRecord
   def update_meta_data
     product_data = YahooManager::ProductDataScraper.call({ isin: isin })
 
-    self.ticker = product_data[:ticker]
-    self.equity_type = product_data[:equity_type]
-    self.name = product_data[:name]
-    self.long_name = product_data[:long_name]
-    self.recommendations = product_data[:recommendations]
-    self.currency_base = product_data[:currency_base]
-    self.mean_target_price = product_data[:mean_target_price]
-    self.price_yahoo = product_data[:price_yahoo]
-    self.number_of_analysts = product_data[:number_of_analysts]
-    self.price_potential = product_data[:price_potential]
+    self.ticker = product_data&.dig(:ticker)
+    self.equity_type = product_data&.dig(:equity_type)
+    self.name = product_data&.dig(:name) || self.name
+    self.long_name = product_data&.dig(:long_name)
+    self.recommendations = product_data&.dig(:recommendations)
+    self.currency_base = product_data&.dig(:currency_base)
+    self.mean_target_price = product_data&.dig(:mean_target_price)
+    self.price_yahoo = product_data&.dig(:price_yahoo)
+    self.number_of_analysts = product_data&.dig(:number_of_analysts)
+    self.price_potential = product_data&.dig(:price_potential)
 
     self.stock_analyzer = ProductAnalyzer::StockAnalyzer.call({ price_potential: price_potential,
                                                                 number_of_analysts: number_of_analysts })

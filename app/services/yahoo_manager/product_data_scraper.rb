@@ -20,7 +20,6 @@ module YahooManager
         equity_type = json['quotes'][0]['quoteType'] if json['quotes'][0]['quoteType']
         name = json['quotes'][0]['shortname'] if json['quotes'][0]['shortname']
         long_name = json['quotes'][0]['longname'] if json['quotes'][0]['longname']
-        p ticker
 
         if equity_type == 'EQUITY'
           data = get_stockdata_by_ticker(ticker)
@@ -45,10 +44,11 @@ module YahooManager
             price_potential = ((record['targetMeanPrice']['raw'].to_f / record['currentPrice']['raw']) - 1)
           end
         end
-
         { ticker: ticker, equity_type: equity_type, name: name, long_name: long_name, recommendations: recommendations,
           currency_base: currency_base, mean_target_price: mean_target_price, price_yahoo: price_yahoo, number_of_analysts: number_of_analysts, price_potential: price_potential }
-      rescue StandardError
+
+      rescue
+        {name:"na"}
       end
     end
 
