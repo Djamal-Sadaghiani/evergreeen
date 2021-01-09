@@ -17,3 +17,11 @@
     every: "1d"
     queue: default
     enabled: true
+  ProductDataJob:
+    cron: '0 1 * * *'
+    queue: default
+    enabled: true
+  StockDataJob:
+    cron: '0 */6 * * *'
+    queue: default
+    enabled: true
