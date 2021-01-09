@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :currencies
   resources :income_statements
   root to: 'pages#home'
   get 'pages/impressum'

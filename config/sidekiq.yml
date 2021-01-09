@@ -9,7 +9,12 @@
 
 :schedule:
   LsTradesJob:
-    every: '15m'
+    every: "15m"
+    queue: default
+    enabled: true
+
+  CurrencyExchangeRatesJob:
+    every: "1d"
     queue: default
     enabled: true
   ProductDataJob:
