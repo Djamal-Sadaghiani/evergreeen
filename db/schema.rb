@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_108_181_847) do
+ActiveRecord::Schema.define(version: 20_210_109_163_001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -66,10 +68,8 @@ ActiveRecord::Schema.define(version: 20_210_108_181_847) do
     t.string 'equity_type'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.decimal 'price_potential'
     t.string 'currency_base'
     t.integer 'price_yahoo'
-    t.string 'stock_analyzer'
     t.index ['isin'], name: 'index_products_on_isin', unique: true
   end
 
