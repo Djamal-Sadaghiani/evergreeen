@@ -4,6 +4,7 @@ require 'curb'
 require 'json'
 
 class Product < ApplicationRecord
+  searchkick
   has_many :trades
   has_many :income_statements
   after_create :update_meta_data
