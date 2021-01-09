@@ -5,9 +5,9 @@ class ProductDataJob < ApplicationJob
 
   def perform
     i = 0
-    Product.where("ticker IS NULL").each do |product|
+    Product.where('ticker IS NULL').each do |product|
       sleep(1.hour) if i % 600 == 0
-      product_data = YahooManager::ProductDataScraper.call({isin: product.isin})
+      product_data = YahooManager::ProductDataScraper.call({ isin: product.isin })
       product.ticker = product_data&.dig(:ticker)
       product.equity_type = product_data&.dig(:equity_type)
       product.name = product_data&.dig(:name) || product.name
