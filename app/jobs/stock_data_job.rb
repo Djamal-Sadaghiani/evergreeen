@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductDataJob < ApplicationJob
+class StockDataJob < ApplicationJob
   queue_as :default
 
   def perform
