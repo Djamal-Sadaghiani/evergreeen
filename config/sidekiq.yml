@@ -12,3 +12,7 @@
     every: '15m'
     queue: default
     enabled: true
+  ProductDataJob:
+    every: '2h'
+    queue: default
+    enabled: true
