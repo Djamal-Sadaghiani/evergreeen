@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
     if params[:query].present?
 
       results = Product.search(params[:query]).map { |result| result.id }
-      # result = "(" + results.join(",") + ")"
       @products = Product.where(id: results).paginate(page: params[:page], per_page: 100)
 
     else
