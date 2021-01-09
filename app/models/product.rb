@@ -17,7 +17,7 @@ class Product < ApplicationRecord
 
     self.ticker = product_data&.dig(:ticker)
     self.equity_type = product_data&.dig(:equity_type)
-    self.name = product_data&.dig(:name) || self.name
+    self.name = product_data&.dig(:name) || name
     self.long_name = product_data&.dig(:long_name)
     self.recommendations = product_data&.dig(:recommendations)
     self.currency_base = product_data&.dig(:currency_base)

@@ -46,9 +46,8 @@ module YahooManager
         end
         { ticker: ticker, equity_type: equity_type, name: name, long_name: long_name, recommendations: recommendations,
           currency_base: currency_base, mean_target_price: mean_target_price, price_yahoo: price_yahoo, number_of_analysts: number_of_analysts, price_potential: price_potential }
-
-      rescue
-        {name:"na"}
+      rescue StandardError
+        { name: 'na' }
       end
     end
 
