@@ -4,7 +4,7 @@ require 'curb'
 require 'json'
 
 class CurrencyExchangeRatesJob < ApplicationJob
-  queue_as :default
+  queue_as :yahoo
 
   def perform
     Currency.all.each do |currency|
