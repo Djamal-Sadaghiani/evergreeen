@@ -12,7 +12,7 @@ class Trade < ApplicationRecord
     product = Product.where('isin = ?', isin)
     if product.empty?
       product = Product.create(name: name, isin: isin)
-      self.product = p
+      self.product = product
       save
     else
       self.product = product.first
