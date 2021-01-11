@@ -2,12 +2,12 @@
 
 <h1>Currencies</h1>
 
-<table>
-  <thead>
+<table class="table table-striped table-hover">
+  <thead class="thead-dark">
     <tr>
       <th>Currency iso</th>
-      <th>Exchange rate to eur</th>
-      <th>Last update</th>
+      <th class="right-align">Exchange rate to eur</th>
+      <th class="right-align">Last update</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,11 +16,9 @@
     <% @currencies.each do |currency| %>
     <tr>
       <td><%= currency.currency_ISO %></td>
-      <td><%= currency.exchange_rate_to_EUR %></td>
-      <td><%= currency.updated_at %></td>
+      <td class="right-align"><%= number_with_precision(currency.exchange_rate_to_EUR,precision:2) %></td>
+      <td class="right-align"><%= currency.updated_at %></td>
       <td><%= link_to 'Show', currency %></td>
-      <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
-      <td><%= link_to 'Destroy', currency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>

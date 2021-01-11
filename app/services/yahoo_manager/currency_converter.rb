@@ -12,7 +12,7 @@ module YahooManager
 
     # ISO code as input e.g. "USD"
     def call
-      @amount / Currency.find_by_currency_ISO(@currency).exchange_rate_to_EUR
+      @amount / Currency.find_by_currency_ISO(@currency)&.exchange_rate_to_EUR if !@amount.nil? && !@currency.nil?
     end
   end
 end
