@@ -11,7 +11,7 @@ class CurrencyExchangeRatesJob < ApplicationJob
       exchange_rate = get_json(currency.currency_ISO)['spark']['result'][0]['response'][0]['meta']['regularMarketPrice']
       currency.exchange_rate_to_EUR = exchange_rate
       currency.touch
-      currency.save!
+      currency.save
     end
   end
 
