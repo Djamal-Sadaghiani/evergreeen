@@ -21,13 +21,14 @@ module YahooManager
       headquarter = get_country
       website = get_website
       phone_number = get_phone_number
-      lat, lng = get_location
+      lat, lng = get_location || 0, 0
       uuid = description + ' ' + industry + ' ' + sector
+      address = get_address
 
       { description: description, industry: industry, sector: sector, number_of_employees: employees,
-        headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid }
-    rescue StandardError
-      {}
+        headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid, address:address }
+    #rescue StandardError
+    #  {}
     end
 
     def get_companydata_by_ticker
@@ -37,7 +38,7 @@ module YahooManager
     end
 
     def get_description
-      @data.css('p[data-reactid="217"]').first.text.strip
+      @data.xpath('//p[contains(@class, "Mt(15px) Lh(1.6)")]').text.strip
     end
 
     def get_industry
@@ -73,8 +74,12 @@ module YahooManager
     end
 
     def get_location
-      address = get_street + ' ' + get_town + ' ' + get_country
-      Geocoder.search(address).first.coordinates
+      Geocoder.search(get_address).first&.coordinates
     end
+
+    def get_address
+      (get_street + ' ' + get_town + ' ' + get_country).encode("iso-8859-1").force_encoding("utf-8")
+    end
+
   end
 end
