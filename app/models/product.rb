@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   searchkick
   has_many :trades
   has_many :income_statements
+  belongs_to :company, optional: true
 
   def price
     trades.last&.price

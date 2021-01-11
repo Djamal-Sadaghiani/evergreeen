@@ -8,6 +8,10 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.integer :shares_outstanding
       t.string :country_headquarter
       t.integer :number_of_employees
+      t.string :website
+      t.string :phone_number
+      t.decimal :lat
+      t.decimal :lng
 
       t.timestamps
     end
