@@ -9,7 +9,7 @@
 
 :schedule:
   LsTradesJob:
-    every: "15m"
+    every: "5m"
     queue: default
     enabled: true
 
