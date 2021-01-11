@@ -4,7 +4,7 @@ class ProductDataJob < ApplicationJob
   queue_as :yahoo
 
   def perform
-    i = 0
+    i = 1
     Product.where('ticker IS NULL').each do |product|
       sleep(1.hour) if i % 600 == 0
       product_data = YahooManager::ProductDataScraper.call({ isin: product.isin })
