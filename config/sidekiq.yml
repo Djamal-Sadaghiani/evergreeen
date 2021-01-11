@@ -1,27 +1,27 @@
 :concurrency: 3
-:timeout: 60
+:timeout: 36000
 :verbose: true
 :queues:
   # Queue priority:
   # https://github.com/mperham/sidekiq/wiki/Advanced-Options
   - default
   - mailers
+  - yahoo
 
 :schedule:
   LsTradesJob:
-    every: "5m"
+    cron: "*/5 7-23 * * *"
     queue: default
     enabled: true
-
   CurrencyExchangeRatesJob:
     every: "1d"
-    queue: default
+    queue: yahoo
     enabled: true
   ProductDataJob:
-    cron: '0 1 * * *'
-    queue: default
+    cron: "0 1 * * *"
+    queue: yahoo
     enabled: true
   StockDataJob:
-    cron: '0 */6 * * *'
-    queue: default
+    cron: "0 */6 * * *"
+    queue: yahoo
     enabled: true

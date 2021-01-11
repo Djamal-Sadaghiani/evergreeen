@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StockDataJob < ApplicationJob
-  queue_as :default
+  queue_as :yahoo
 
   def perform
     i = 0

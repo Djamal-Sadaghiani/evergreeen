@@ -19,3 +19,5 @@ currencies.each do |currency|
   exchange_rate = get_json(currency)['spark']['result'][0]['response'][0]['meta']['regularMarketPrice']
   Currency.create(currency_ISO: currency, exchange_rate_to_EUR: exchange_rate)
 end
+
+User.create(email: 'admin@admin.de', password: '123456', admin: true)

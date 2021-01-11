@@ -55,11 +55,11 @@
       <td><%= link_to product.name, product %></td>
       <td><%= product.ticker %></td>
       <td><%= product.equity_type %></td>
-      <td class="right-align">€ <%= (product.price.to_d / 10000)&.round(2) %></td>
+      <td class="right-align">€ <%= number_with_precision((product.price.to_d / 10000),precision:2) %></td>
       <td><%= product.recommendations %></td>
       <td class="right-align"><%= (product.price_potential&.*100)&.round(0).to_i %>%</td>
-      <td class="right-align">€ <%= (product.mean_target_price.to_d / 10000)&.round(2) %></td>
-      <td class="right-align">€ <%= (product.price_yahoo.to_d / 10000)&.round(2) %></td>
+      <td class="right-align">€ <%= number_with_precision((product.mean_target_price.to_d / 10000),precision:2) %></td>
+      <td class="right-align">€ <%= number_with_precision((product.price_yahoo.to_d / 10000),precision:2) %></td>
       <td><%= product.number_of_analysts %></td>
       <td>€ <%= (VolumeCalculator.call({product: product, startdate: 1.day.ago, enddate: Time.now}) / 1000000) %></td>
       <td><%= product.currency_base%></td>
