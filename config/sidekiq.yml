@@ -10,10 +10,9 @@
 
 :schedule:
   LsTradesJob:
-    cron: "*/15 7-23 * * *"
+    cron: "*/5 7-23 * * *"
     queue: default
     enabled: true
-
   CurrencyExchangeRatesJob:
     every: "1d"
     queue: yahoo
