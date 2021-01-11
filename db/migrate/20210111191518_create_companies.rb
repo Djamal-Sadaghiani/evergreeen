@@ -5,7 +5,6 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.string :industry
       t.string :description
       t.string :sector
-      t.integer :shares_outstanding
       t.string :country_headquarter
       t.integer :number_of_employees
       t.string :website
