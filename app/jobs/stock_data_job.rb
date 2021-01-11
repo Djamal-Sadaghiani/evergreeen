@@ -4,7 +4,7 @@ class StockDataJob < ApplicationJob
   queue_as :yahoo
 
   def perform
-    i = 0
+    i = 1
     Product.where("equity_type = 'EQUITY' AND ticker IS NOT NULL").each do |product|
       sleep(1.hour) if i % 600 == 0
       stock_data = YahooManager::StockDataScraper.call({ ticker: product.ticker })
