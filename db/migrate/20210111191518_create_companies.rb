@@ -11,9 +11,10 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.string :phone_number
       t.decimal :lat
       t.decimal :lng
+      t.string :ticker, null: false
 
       t.timestamps
     end
-    add_index :companies, :uuid, unique: true
+    add_index :companies, :ticker, unique: true
   end
 end
