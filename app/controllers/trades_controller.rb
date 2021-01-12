@@ -2,7 +2,7 @@
 
 class TradesController < ApplicationController
   before_action :set_trade, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: %i[show index]
   # GET /trades
   # GET /trades.json
   def index
@@ -16,6 +16,10 @@ class TradesController < ApplicationController
   # GET /trades/new
   def new
     @trade = Trade.new
+    @product = Product.find_by_id(params['trade'][:product_id])
+    @trade.product_id = params['trade'][:product_id].to_i
+    @trade.user_id = current_user.id
+    @trade.trade_uuid = SecureRandom.uuid
   end
 
   # GET /trades/1/edit
@@ -25,9 +29,10 @@ class TradesController < ApplicationController
   # POST /trades.json
   def create
     @trade = Trade.new(trade_params)
+    @trade.user = current_user
 
     respond_to do |format|
-      if @trade.save
+      if @trade.save!
         format.html { redirect_to @trade, notice: 'Trade was successfully created.' }
         format.json { render :show, status: :created, location: @trade }
       else
@@ -70,6 +75,7 @@ class TradesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trade_params
-    params.require(:trade).permit(:trade_uuid, :isin, :name, :time, :price, :amount)
+    params.require(:trade).permit(:trade_uuid, :isin, :name, :time, :price, :amount, :transaction_cost,
+                                  :investment_hypothesis, :product_id, :user_id)
   end
 end

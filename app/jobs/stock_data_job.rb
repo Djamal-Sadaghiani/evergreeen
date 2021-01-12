@@ -19,7 +19,7 @@ class StockDataJob < ApplicationJob
       product.recommendations = stock_data&.dig(:recommendations)
       product.touch
       product.save
-        rescue StandardError
+    rescue StandardError
       next(product)
     end
   end

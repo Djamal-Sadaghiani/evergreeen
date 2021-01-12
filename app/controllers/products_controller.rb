@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   def index
     if params[:query].present?
 
-      results = Product.search(params[:query]).map { |result| result.id }
+      results = Product.search(params[:query]).map(&:id)
       @products = Product.where(id: results).paginate(page: params[:page], per_page: 100)
 
     else
@@ -18,7 +18,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
-  def show; end
+  def show
+    @trades = @product.trades.order(time: :desc).limit(10)
+  end
 
   # GET /products/new
   def new

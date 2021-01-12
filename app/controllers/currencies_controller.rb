@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CurrenciesController < ApplicationController
   before_action :set_currency, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!

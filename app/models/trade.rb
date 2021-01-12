@@ -2,6 +2,7 @@
 
 class Trade < ApplicationRecord
   belongs_to :product, optional: true
+  belongs_to :user
   validates :name, :isin, :amount, :price, :time, :trade_uuid, presence: true
   validates :trade_uuid, uniqueness: true
   after_create :create_or_find_product
