@@ -27,8 +27,8 @@ module YahooManager
 
       { description: description, industry: industry, sector: sector, number_of_employees: employees,
         headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid, address:address }
-    #rescue StandardError
-    #  {}
+    rescue StandardError
+      {}
     end
 
     def get_companydata_by_ticker
