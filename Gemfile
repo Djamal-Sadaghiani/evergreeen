@@ -42,6 +42,9 @@ gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'sidekiq-scheduler'
 
+gem 'geocoder'
+gem 'nokogiri'
+
 gem 'curb'
 
 gem 'rails_admin', '~> 2.0'

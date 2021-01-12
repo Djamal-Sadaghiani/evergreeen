@@ -3,6 +3,16 @@
 <div class="jumbotron">
   <h1 class="display-4"><%= @product.name %></h1>
   <br>
+  <h4> Description: </h4>
+  <p class="lead"> <%= @product.company.description %></p>
+  <p class="lead">Industry: <%= @product.company.industry %></p>
+  <p class="lead">Sector: <%= @product.company.sector%></p>
+  <p class="lead">Employees: <%= @product.company.number_of_employees%></p>
+  <p class="lead">Headquarter: <%= @product.company.country_headquarter%></p>
+  <p class="lead">Website: <%= @product.company.website%></p>
+  <p class="lead">Phone number: <%= @product.company.phone_number%></p>
+  <p class="lead">Address: <%= @product.company.address%></p>
+  <p class="lead">Sector: <%= @product.company.sector%></p>
   <p class="lead">ISIN: <%= @product.isin %></p>
   <p class="lead">Long Name: <%= @product.long_name %></p>
   <p class="lead">Equity Type: <%= @product.equity_type %></p>
@@ -13,32 +23,34 @@
   <br>
   <h3> Latest Trades </h3>
   <br>
-  <table class="table table-striped table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th>Trade uuid</th>
-      <th>Isin</th>
-      <th>Name</th>
-      <th>Time</th>
-      <th>Price</th>
-      <th>Amount</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @trades.each do |trade| %>
-    <tr>
-      <td><%= trade.trade_uuid %></td>
-      <td><%= trade.isin %></td>
-      <td><%= trade.name %></td>
-      <td><%= trade.time %></td>
-      <td>€ <%= number_with_precision((trade.price.to_f / 10000), precision: 2) %></td>
-      <td><%= trade.amount %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Trade uuid</th>
+        <th>Isin</th>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Price</th>
+        <th>Amount</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @trades.each do |trade| %>
+      <tr>
+        <td><%= trade.trade_uuid %></td>
+        <td><%= trade.isin %></td>
+        <td><%= trade.name %></td>
+        <td><%= trade.time %></td>
+        <td>€ <%= number_with_precision((trade.price.to_f / 10000), precision: 2) %></td>
+        <td><%= trade.amount %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
   <%= link_to 'Edit Product', edit_product_path(@product), class:"btn btn-secondary"%>
   <%= link_to 'Back', products_path, class:"btn btn-secondary"%>
   <%= link_to 'New Trade', new_trade_path(trade: { product_id: @product.id }), class: "btn btn-primary" %>

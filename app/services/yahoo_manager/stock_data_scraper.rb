@@ -8,7 +8,6 @@ module YahooManager
 
     def call
       data = get_stockdata_by_ticker(@ticker)
-      p
       return if data['quoteSummary']['result'].nil?
 
       record = data['quoteSummary']['result'][0]['financialData']
