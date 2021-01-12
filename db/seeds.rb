@@ -21,3 +21,4 @@ currencies.each do |currency|
 end
 
 User.create(email: 'admin@admin.de', password: '123456', admin: true)
+User.create(email: 'lsexchange@evergreen.de', password: 'LangundSchwarz')

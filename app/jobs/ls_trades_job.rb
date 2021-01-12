@@ -8,6 +8,7 @@ class LsTradesJob < ApplicationJob
   def perform
     download_trades
     last_trade = Trade.last&.time || Time.new(2000, 11, 1, 15, 25, 0, '+00:00')
+    user = User.find_by_email("lsexchange@evergreen.de")
     CSV.foreach('trades.csv', headers: true, liberal_parsing: true, quote_char: '"', col_sep: ';') do |row|
       if row[2].to_datetime > last_trade
         Trade.create(
@@ -16,7 +17,8 @@ class LsTradesJob < ApplicationJob
           name: row[1].to_s,
           time: row[2].to_datetime,
           price: row[3].to_s.gsub(',', '').to_i,
-          amount: row[4].to_i
+          amount: row[4].to_i,
+          user: user,
         )
       end
     rescue StandardError

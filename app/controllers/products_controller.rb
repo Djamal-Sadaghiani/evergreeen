@@ -18,7 +18,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
-  def show; end
+  def show
+    @trades = @product.trades.order(time: :desc).limit(10)
+  end
 
   # GET /products/new
   def new
