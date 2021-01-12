@@ -4,9 +4,7 @@ class StockDataJob < ApplicationJob
   queue_as :yahoo
 
   def perform
-    i = 1
-    Product.where("equity_type = 'EQUITY' AND ticker IS NOT NULL").each do |product|
-      sleep(1.hour) if i % 600 == 0
+    Product.where("equity_type = 'EQUITY' AND ticker IS NOT NULL").order(updated_at: :asc).limit(600).each do |product|
       stock_data = YahooManager::StockDataScraper.call({ ticker: product.ticker })
       if product.currency_base == 'EUR'
         product.mean_target_price = stock_data&.dig(:mean_target_price)
@@ -19,8 +17,10 @@ class StockDataJob < ApplicationJob
       end
       product.number_of_analysts = stock_data&.dig(:number_of_analysts)
       product.recommendations = stock_data&.dig(:recommendations)
+      product.touch
       product.save
-      i += 1
+        rescue StandardError
+      next(product)
     end
   end
 end
