@@ -23,6 +23,4 @@ class Product < ApplicationRecord
     ProductAnalyzer::StockAnalyzer.call({ price_potential: price_potential,
                                           number_of_analysts: number_of_analysts })
   end
-
-
 end

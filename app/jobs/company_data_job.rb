@@ -4,7 +4,7 @@ class CompanyDataJob < ApplicationJob
   queue_as :yahoo
 
   def perform
-    Company.all.each do |company| 
+    Company.all.each do |company|
       company_data = YahooManager::CompanyDataScraper.call(ticker: company.ticker)
 
       company.description = company_data&.dig(:description)
