@@ -14,7 +14,6 @@
       <th>Amount</th>
       <th>Total value</th>
       <th>Time</th>
-      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -24,10 +23,10 @@
       <td><%= trade.trade_uuid %></td>
       <td><%= trade.isin %></td>
       <td><%= link_to trade.name, trade %></td>
-      <td>€ <%= number_with_precision((trade.price.to_f / 10000), precision: 2) %></td>
-      <td><%= trade.amount %></td>
-      <td>€ <%= number_with_precision((trade.amount.to_f * trade.price.to_f / 10000), precision: 2)%></td>
-      <td><%= trade.time %></td>
+      <td class="right-align">€ <%= number_with_precision((trade.price.to_f / 10000), precision: 2) %></td>
+      <td class="right-align"><%= trade.amount %></td>
+      <td class="right-align">€ <%= number_with_precision((trade.amount.to_f * trade.price.to_f / 10000), precision: 2)%></td>
+      <td class="right-align"><%= trade.time %></td>
     </tr>
     <% end %>
   </tbody>

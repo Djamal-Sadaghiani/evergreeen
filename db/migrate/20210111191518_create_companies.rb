@@ -9,6 +9,7 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.integer :number_of_employees
       t.string :website
       t.string :phone_number
+      t.string :address
       t.decimal :lat
       t.decimal :lng
       t.string :ticker, null: false

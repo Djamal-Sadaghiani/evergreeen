@@ -5,7 +5,14 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    if params[:query].present?
+
+      results = Company.search(params[:query]).map(&:id)
+      @companies = Company.where(id: results).paginate(page: params[:page], per_page: 100)
+
+    else
+      @companies = Company.all.order(:industry).paginate(page: params[:page], per_page: 100)
+    end
   end
 
   # GET /companies/1

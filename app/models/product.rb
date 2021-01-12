@@ -24,16 +24,5 @@ class Product < ApplicationRecord
                                           number_of_analysts: number_of_analysts })
   end
 
-  def create_or_find_company
-    company = Company.where('ticker = ?', ticker)
-    if company.empty?
-      company = Company.create(ticker: ticker)
-      self.company = company
-      save
-    else
-      self.company = company.first
-      save
-    end
-  end
 
 end

@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Uuid:</strong>
-  <%= @company.uuid %>
+  <strong>Ticker:</strong>
+  <%= @company.ticker %>
 </p>
 
 <p>
@@ -20,20 +20,6 @@
   <%= @company.sector %>
 </p>
 
-<p>
-  <strong>Shares outstanding:</strong>
-  <%= @company.shares_outstanding %>
-</p>
-
-<p>
-  <strong>Headquarter:</strong>
-  <%= @company.headquarter %>
-</p>
-
-<p>
-  <strong>Employees:</strong>
-  <%= @company.employees %>
-</p>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_190635) do
     t.integer "number_of_employees"
     t.string "website"
     t.string "phone_number"
+    t.string "address"
     t.decimal "lat"
     t.decimal "lng"
     t.string "ticker", null: false
@@ -111,8 +110,12 @@ ActiveRecord::Schema.define(version: 2021_01_12_190635) do
     t.bigint "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.string "investment_hypothesis"
+    t.integer "transaction_cost"
     t.index ["product_id"], name: "index_trades_on_product_id"
     t.index ["trade_uuid"], name: "index_trades_on_trade_uuid", unique: true
+    t.index ["user_id"], name: "index_trades_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -131,4 +134,5 @@ ActiveRecord::Schema.define(version: 2021_01_12_190635) do
   add_foreign_key "income_statements", "products"
   add_foreign_key "products", "companies"
   add_foreign_key "trades", "products"
+  add_foreign_key "trades", "users"
 end
