@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   def index
     if params[:query].present?
 
-      results = Product.search(params[:query]).map { |result| result.id }
+      results = Product.search(params[:query]).map(&:id)
       @products = Product.where(id: results).paginate(page: params[:page], per_page: 100)
 
     else

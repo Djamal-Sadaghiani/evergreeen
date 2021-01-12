@@ -15,7 +15,7 @@ class Product < ApplicationRecord
   def price_potential
     return unless !mean_target_price.nil? && !mean_target_price.nil?
 
-    (mean_target_price.to_f / price_yahoo.to_f) - 1
+    (mean_target_price.to_f / price_yahoo) - 1
   end
 
   def stock_analyzer

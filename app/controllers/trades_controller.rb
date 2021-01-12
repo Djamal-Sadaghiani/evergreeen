@@ -16,8 +16,8 @@ class TradesController < ApplicationController
   # GET /trades/new
   def new
     @trade = Trade.new
-    @product = Product.find_by_id(params["trade"][:product_id])
-    @trade.product_id = params["trade"][:product_id].to_i
+    @product = Product.find_by_id(params['trade'][:product_id])
+    @trade.product_id = params['trade'][:product_id].to_i
     @trade.user_id = current_user.id
     @trade.trade_uuid = SecureRandom.uuid
   end
@@ -75,6 +75,7 @@ class TradesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trade_params
-    params.require(:trade).permit(:trade_uuid, :isin, :name, :time, :price, :amount, :transaction_cost, :investment_hypothesis, :product_id, :user_id)
+    params.require(:trade).permit(:trade_uuid, :isin, :name, :time, :price, :amount, :transaction_cost,
+                                  :investment_hypothesis, :product_id, :user_id)
   end
 end

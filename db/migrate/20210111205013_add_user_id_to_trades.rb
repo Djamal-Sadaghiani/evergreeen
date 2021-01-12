@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserIdToTrades < ActiveRecord::Migration[6.0]
   def change
     add_reference :trades, :user, foreign_key: true
