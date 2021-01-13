@@ -12,6 +12,35 @@
   <p class="lead">Total: € <%= number_with_precision((@trade.amount.to_f * @trade.price.to_f / 10000), precision: 2) %></p>
   <br>
   <br>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Trade uuid</th>
+        <th>Isin</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Amount</th>
+        <th>Total</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @trades.each do |trade| %>
+      <tr>
+        <td><%= trade.trade_uuid %></td>
+        <td><%= trade.isin %></td>
+        <td><%= trade.name %></td>
+        <td>€ <%= number_with_precision((trade.price.to_f / 10000), precision: 2) %></td>
+        <td><%= trade.amount %></td>
+        <td>€ <%= number_with_precision((trade.amount * trade.price.to_f / 10000), precision: 2) %></td>
+        <td><%= trade.time %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <br>
 
   <%= link_to 'Edit', edit_trade_path(@trade), class:"btn btn-secondary"%>
   <%= link_to 'Back', trades_path, class:"btn btn-secondary"%>

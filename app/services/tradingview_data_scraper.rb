@@ -23,12 +23,11 @@ class TradingviewDataScraper < ApplicationService
   def get_tradingview_data_by_ticker
     url = "https://s.tradingview.com/embed-widget/technical-analysis/?locale=en#%7B%22interval%22%3A%221M%22%2C%22width%22%3A%22100%25%22%2C%22isTransparent%22%3Afalse%2C%22height%22%3A%22100%25%22%2C%22symbol%22%3A%22#{@ticker}%22%2C%22showIntervalTabs%22%3Atrue%2C%22colorTheme%22%3A%22dark%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22technical-analysis%22%7D"
     html_file = open(url).read
-    p Nokogiri::HTML(html_file).text.strip
   end
 
-  def get_recommendation
-    # @data.xpath('//span[contains(@class, "speedometerSignal")]')
+  def parse(responce, url:, data: {})
   end
+
 
   def get_net_recommendation_score
     positive = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C buyColor-4BaoBngr")]')&.text&.strip.to_f || 0

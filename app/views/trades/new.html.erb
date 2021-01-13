@@ -1,6 +1,7 @@
 <h1>New Trade</h1>
 
 <%= simple_form_for @trade do |f| %>
+<p class="lead"> Insert Price in microcent (*10000) </p>
 <%= f.input :price %>
 <%= f.input :amount %>
 <%= f.input :time %>

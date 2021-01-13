@@ -11,7 +11,9 @@ class TradesController < ApplicationController
 
   # GET /trades/1
   # GET /trades/1.json
-  def show; end
+  def show
+    @trades = Trade.where(id: @trade.id).order(time: :desc).limit(10)
+  end
 
   # GET /trades/new
   def new
