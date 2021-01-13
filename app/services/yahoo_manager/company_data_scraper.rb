@@ -24,7 +24,7 @@ module YahooManager
       phone_number = get_phone_number
       lat = get_location&.first || 0
       lng = get_location&.second || 0
-      uuid = Digest::MD5.hexdigest(description + ' ' + industry + ' ' + sector)
+      uuid = Digest::MD5.hexdigest("#{description} #{industry} #{sector}")
       address = get_address
 
       { description: description, industry: industry, sector: sector, number_of_employees: employees,
@@ -83,9 +83,7 @@ module YahooManager
     end
 
     def get_address
-      unless get_street.nil?
-        (get_street + ' ' + get_town + ' ' + get_country)&.encode('iso-8859-1')&.force_encoding('utf-8')
-      end
+      "#{get_street} #{get_town} #{get_country}"&.encode('iso-8859-1')&.force_encoding('utf-8') unless get_street.nil?
     end
   end
 end

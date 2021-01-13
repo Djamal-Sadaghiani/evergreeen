@@ -4,15 +4,15 @@
   <h1 class="display-4"><%= @product.name %></h1>
   <br>
   <h4> Description: </h4>
-  <p class="lead"> <%= @product.company.description %></p>
-  <p class="lead">Industry: <%= @product.company.industry %></p>
-  <p class="lead">Sector: <%= @product.company.sector%></p>
-  <p class="lead">Employees: <%= @product.company.number_of_employees%></p>
-  <p class="lead">Headquarter: <%= @product.company.country_headquarter%></p>
-  <p class="lead">Website: <%= @product.company.website%></p>
-  <p class="lead">Phone number: <%= @product.company.phone_number%></p>
-  <p class="lead">Address: <%= @product.company.address%></p>
-  <p class="lead">Sector: <%= @product.company.sector%></p>
+  <p class="lead"> <%= @product.company&.description %></p>
+  <p class="lead">Industry: <%= @product.company&.industry %></p>
+  <p class="lead">Sector: <%= @product.company&.sector%></p>
+  <p class="lead">Employees: <%= @product.company&.number_of_employees%></p>
+  <p class="lead">Headquarter: <%= @product.company&.country_headquarter%></p>
+  <p class="lead">Website: <%= @product.company&.website%></p>
+  <p class="lead">Phone number: <%= @product.company&.phone_number%></p>
+  <p class="lead">Address: <%= @product.company&.address%></p>
+  <p class="lead">Sector: <%= @product.company&.sector%></p>
   <p class="lead">ISIN: <%= @product.isin %></p>
   <p class="lead">Long Name: <%= @product.long_name %></p>
   <p class="lead">Equity Type: <%= @product.equity_type %></p>
@@ -23,7 +23,6 @@
   <br>
   <h3> Latest Trades </h3>
   <br>
-
 
   <table class="table table-striped table-hover">
     <thead class="thead-dark">
