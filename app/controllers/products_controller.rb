@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @trades = @product.trades.order(time: :desc).limit(10)
+    @iframe_url = MetabaseUrlCreator.call(product_id: @product.id)
   end
 
   # GET /products/new
