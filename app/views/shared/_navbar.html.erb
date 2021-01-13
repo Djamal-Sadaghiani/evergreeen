@@ -38,6 +38,14 @@
         <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
         Log out
         <% end %>
+        <% if current_user.admin == true %>
+      <li class="nav-item">
+        <%= link_to "Sidekiq", sidekiq_web_path, class: "nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Admin", rails_admin_path, class: "nav-link"%>
+      </li>
+      <%end%>
       </li>
       </li>
       <% else %>

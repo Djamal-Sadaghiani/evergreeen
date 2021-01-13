@@ -2,4 +2,5 @@
 
 class Company < ApplicationRecord
   has_many :products
+  searchkick
 end

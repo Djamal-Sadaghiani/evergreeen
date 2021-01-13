@@ -26,6 +26,6 @@
     queue: yahoo
     enabled: true
   CompanyDataJob:
-    cron: "0 3 * * *"
+    cron: "0 0-7 * * *"
     queue: yahoo
     enabled: true

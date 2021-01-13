@@ -4,7 +4,7 @@ class CompanyDataJob < ApplicationJob
   queue_as :yahoo
 
   def perform
-    Company.all.each do |company|
+    Company.all.order(updated_at: :asc).limit(800).each do |company|
       company_data = YahooManager::CompanyDataScraper.call(ticker: company.ticker)
 
       company.description = company_data&.dig(:description)
@@ -19,6 +19,7 @@ class CompanyDataJob < ApplicationJob
       company.uuid = company_data&.dig(:uuid)
       company.address = company_data&.dig(:address)
 
+      company.touch
       company.save
     end
   end

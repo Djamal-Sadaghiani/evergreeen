@@ -1,25 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Ticker:</strong>
-  <%= @company.ticker %>
-</p>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @company.products.first.name %></h1>
+  <br>
+  <h4> Description: </h4>
+  <p class="lead"> <%= @company&.description %></p>
+  <p class="lead">Industry: <%= @company&.industry %></p>
+  <p class="lead">Sector: <%= @company&.sector%></p>
+  <p class="lead">Employees: <%= @company&.number_of_employees%></p>
+  <p class="lead">Headquarter: <%= @company&.country_headquarter%></p>
+  <p class="lead">Website: <%= @company&.website%></p>
+  <p class="lead">Phone number: <%= @company&.phone_number%></p>
+  <p class="lead">Address: <%= @company&.address%></p>
+  <p class="lead">Sector: <%= @company&.sector%></p>
 
-<p>
-  <strong>Industry:</strong>
-  <%= @company.industry %>
-</p>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Equity Type</th>
+        <th class="right-align">L&S Last Price EUR</th>
+        <th class="right-align">Yahoo Last Price EUR</th>
+        <th class="right-align">Analyst mean target price EUR</th>
+        <th class="right-align">Price Potential (Target Price/ Last Price)</th>
+        <th class="right-align">Recommendations (1 best - 5 worst)</th>
+        <th class="right-align">Number of analysts</th>
+        <th>Volume (24h) in T</th>
+        <th>Recommendation</th>
+      </tr>
+    </thead>
+    <br>
+    <h3> Related Products: </h3>
+    <br>
 
-<p>
-  <strong>Description:</strong>
-  <%= @company.description %>
-</p>
+    <tbody>
+      <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <td><%= product.equity_type %></td>
+        <td class="right-align">€ <%= number_with_precision((product.price.to_d / 10000),precision:2) %></td>
+        <td class="right-align">€ <%= number_with_precision((product.price_yahoo.to_d / 10000),precision:2) %></td>
+        <td class="right-align">€ <%= number_with_precision((product.mean_target_price.to_d / 10000),precision:2) %></td>
+        <td class="right-align"><%= (product.price_potential&.*100)&.round(0).to_i %>%</td>
+        <td class="right-align"><%= product.recommendations %></td>
+        <td class="right-align"><%= product.number_of_analysts %></td>
+        <td>€ <%= (VolumeCalculator.call({product: product, startdate: 1.day.ago, enddate: Time.now}) / 1000000) %></td>
+        <td><%= product.stock_analyzer%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Sector:</strong>
-  <%= @company.sector %>
-</p>
-
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+  <%= link_to 'Back', companies_path, class:"btn btn-secondary"%>
