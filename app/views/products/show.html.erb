@@ -21,6 +21,14 @@
   <p class="lead">Number of analysts: <%= @product.number_of_analysts %></p>
   <p class="lead">Ticker: <%= @product.ticker %></p>
   <br>
+  <div class="row metabase-row">
+    <iframe class="current-price"
+      src="<%= @iframe_url %>"
+      frameborder="0"
+      allowtransparency
+    ></iframe>
+  </div>
+  <br>
   <h3> Latest Trades </h3>
   <br>
 
