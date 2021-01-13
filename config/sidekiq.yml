@@ -1,6 +1,7 @@
-:concurrency: 3
+:concurrency: 5
 :timeout: 36000
 :verbose: true
+:max_retries: 10
 :queues:
   # Queue priority:
   # https://github.com/mperham/sidekiq/wiki/Advanced-Options
@@ -10,7 +11,7 @@
 
 :schedule:
   LsTradesJob:
-    cron: "*/5 7-23 * * *"
+    cron: "*/1 7-23 * * *"
     queue: default
     enabled: true
   CurrencyExchangeRatesJob:
