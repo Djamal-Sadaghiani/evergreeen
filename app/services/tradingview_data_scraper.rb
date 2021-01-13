@@ -17,7 +17,7 @@ class TradingviewDataScraper < ApplicationService
     # tradingview_recommendation = get_recommendation
     # tradingview_net_recommendation_score = get_net_recommendation_score
 
-    # { tradingview_recommendation: tradingview_recommendation, tradingview_net_recommendation_score: tradingview_net_recommendation_score }
+    { tradingview_recommendation: tradingview_recommendation, tradingview_net_recommendation_score: tradingview_net_recommendation_score }
   end
 
   def get_tradingview_data_by_ticker
