@@ -19,7 +19,9 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   # GET /companies/1.json
-  def show; end
+  def show
+    @products = @company.products.order(name: :desc).limit(10)
+  end
 
   # GET /companies/new
   def new

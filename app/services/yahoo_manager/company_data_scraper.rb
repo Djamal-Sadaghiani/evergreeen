@@ -22,8 +22,8 @@ module YahooManager
       headquarter = get_country
       website = get_website
       phone_number = get_phone_number
-      lat = get_location&.first || 0
-      lng = get_location&.second || 0
+      lat = get_location&.first || 0.0
+      lng = get_location&.second || 0.0
       uuid = Digest::MD5.hexdigest("#{description} #{industry} #{sector}")
       address = get_address
 
