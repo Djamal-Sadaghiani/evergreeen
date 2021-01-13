@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
       @companies = Company.where(id: results).paginate(page: params[:page], per_page: 100)
 
     else
-      @companies = Company.all.order(:industry).paginate(page: params[:page], per_page: 100)
+      @companies = Company.all.order(sector: :desc).paginate(page: params[:page], per_page: 100)
     end
   end
 
