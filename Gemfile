@@ -32,6 +32,7 @@ gem 'will_paginate-bootstrap4'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
+gem 'kimurai'
 gem 'searchkick', '~>4.0'
 
 gem 'autoprefixer-rails'
