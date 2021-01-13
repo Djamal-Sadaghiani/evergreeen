@@ -1,6 +1,6 @@
 require 'jwt'
 
-METABASE_SITE_URL = 'http://evergreeenreporting.herokuapp.com'
+METABASE_SITE_URL = 'https://evergreeenreporting.herokuapp.com'
 
 class MetabaseUrlCreator < ApplicationService
   def initialize(params)
