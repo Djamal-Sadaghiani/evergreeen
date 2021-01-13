@@ -1,34 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Trade uuid:</strong>
-  <%= @trade.trade_uuid %>
-</p>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @trade.name %></h1>
+  <br>
+  <p class="lead">Trade uuid: <%= @trade.trade_uuid %></p>
+  <p class="lead">Isin: <%= @trade.isin %></p>
+  <p class="lead">Name: <%= @trade.name %></p>
+  <p class="lead">Time: <%= @trade.time %></p>
+  <p class="lead">Price: € <%= number_with_precision((@trade.price.to_f / 10000), precision: 2) %></p>
+  <p class="lead">Amount: <%= @trade.amount %></p>
+  <p class="lead">Total: € <%= number_with_precision((@trade.amount.to_f * @trade.price.to_f / 10000), precision: 2) %></p>
+  <br>
+  <br>
 
-<p>
-  <strong>Isin:</strong>
-  <%= @trade.isin %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @trade.name %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @trade.time %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @trade.price %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @trade.amount %>
-</p>
-
-<%= link_to 'Edit', edit_trade_path(@trade) %> |
-<%= link_to 'Back', trades_path %>
+  <%= link_to 'Edit', edit_trade_path(@trade), class:"btn btn-secondary"%>
+  <%= link_to 'Back', trades_path, class:"btn btn-secondary"%>
