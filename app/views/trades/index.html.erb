@@ -1,8 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Trades</h1>
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm">
+      <h1>Trades (Total: <%= @trades.count%>) </h1>
+    </div>
+
+    <div class="col-sm">
+      <%= will_paginate @trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+
+    <div class="col-sm">
+    </div>
+  </div>
+
+</div>
+
 <br>
-<%= will_paginate @trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 <br>
 <table class="table table-striped table-hover">
   <thead class="thead-dark">
