@@ -20,5 +20,5 @@ currencies.each do |currency|
   Currency.create(currency_ISO: currency, exchange_rate_to_EUR: exchange_rate)
 end
 
-User.create(email: 'admin@admin.de', password: '123456', admin: true)
-User.create(email: 'lsexchange@evergreen.de', password: 'LangundSchwarz')
+User.create(email: 'admin@admin.de', password: ENV['ADMINPW'], admin: true)
+User.create(email: 'lsexchange@evergreen.de', password: ENV['LSTRADEPW'])
