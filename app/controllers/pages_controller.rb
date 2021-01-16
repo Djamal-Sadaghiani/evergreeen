@@ -5,5 +5,9 @@ class PagesController < ApplicationController
 
   def impressum; end
 
-  def home; end
+  def home
+    redirect_to controller: :pages, action: :portfolio if user_signed_in?
+  end
+
+  def portfolio; end
 end

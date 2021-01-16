@@ -8,9 +8,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 # Load Dotenv when in develepment or test
-if ['development', 'test'].include? ENV['RAILS_ENV']
-  Dotenv::Railtie.load
-end
+Dotenv::Railtie.load if %w[development test].include? ENV['RAILS_ENV']
 
 module Evergreeen
   class Application < Rails::Application
