@@ -9,10 +9,10 @@ class ProductsController < ApplicationController
     if params[:query].present?
 
       results = Product.search(params[:query]).map(&:id)
-      @products = Product.where(id: results).paginate(page: params[:page], per_page: 100)
+      @products = Product.where(id: results).paginate(page: params[:page], per_page: 20)
 
     else
-      @products = Product.all.order(recommendations: :asc).paginate(page: params[:page], per_page: 100)
+      @products = Product.all.order(recommendations: :asc).paginate(page: params[:page], per_page: 20)
     end
   end
 

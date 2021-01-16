@@ -10,10 +10,10 @@ class CompaniesController < ApplicationController
     if params[:query].present?
 
       results = Company.search(params[:query]).map(&:id)
-      @companies = Company.where(id: results).paginate(page: params[:page], per_page: 100)
+      @companies = Company.where(id: results).paginate(page: params[:page], per_page: 20)
 
     else
-      @companies = Company.all.order(sector: :desc).paginate(page: params[:page], per_page: 100)
+      @companies = Company.all.order(sector: :desc).paginate(page: params[:page], per_page: 20)
     end
   end
 
