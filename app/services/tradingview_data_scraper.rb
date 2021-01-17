@@ -32,6 +32,6 @@ class TradingviewDataScraper < ApplicationService
     positive = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C buyColor-4BaoBngr")]')&.text&.strip.to_f || 0
     neutral = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C neutralColor-15OoMFX9")]')&.text&.strip.to_f || 0
     negative = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C sellColor-2qa8ZOVt")]')&.text&.strip.to_f || 0
-    (positive - negative) / (positive + neutral + negative) if (positive + neutral + negative) > 0
+    (positive - negative) / (positive + neutral + negative) if (positive + neutral + negative).positive?
   end
 end

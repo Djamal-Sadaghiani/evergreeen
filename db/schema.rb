@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -138,4 +140,5 @@ ActiveRecord::Schema.define(version: 2021_01_16_230332) do
   add_foreign_key "products", "companies"
   add_foreign_key "trades", "products"
   add_foreign_key "trades", "users"
+
 end

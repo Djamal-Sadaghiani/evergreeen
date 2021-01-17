@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'jwt'
 
 METABASE_SITE_URL = 'https://evergreeenreporting.herokuapp.com'

@@ -13,6 +13,10 @@ class Product < ApplicationRecord
     trades.last&.price
   end
 
+  def marketcap
+    price * shares_outstanding
+  end
+
   def price_potential
     return unless !mean_target_price.nil? && !mean_target_price.nil?
 
