@@ -30,7 +30,7 @@ module YahooManager
       address = get_address
 
       { description: description, industry: industry, sector: sector, number_of_employees: employees,
-        headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid, address: address.
+        headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid, address: address,
         country_code: country_code }
     end
 
