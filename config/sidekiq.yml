@@ -30,3 +30,8 @@
     cron: "0 0-7 * * *"
     queue: yahoo
     enabled: true
+  FinanzenDataJob:
+    every: "1d"
+    queue: default
+    enabled: true
+
