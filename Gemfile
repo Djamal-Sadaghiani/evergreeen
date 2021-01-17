@@ -44,6 +44,7 @@ gem 'sidekiq-failures', '~> 1.0'
 gem 'sidekiq-scheduler'
 
 gem 'geocoder'
+gem 'iso_country_codes'
 gem 'nokogiri'
 
 gem 'curb'

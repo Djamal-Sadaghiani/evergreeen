@@ -2,11 +2,6 @@
 
 <div class="container-fluid">
   <div class="row">
-
-    <div class="col-sm">
-      <h1>Trades (Total: <%= @trades.count%>) </h1>
-    </div>
-
     <div class="col-sm">
       <%= will_paginate @trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
     </div>

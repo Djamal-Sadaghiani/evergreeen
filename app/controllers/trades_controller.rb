@@ -6,7 +6,7 @@ class TradesController < ApplicationController
   # GET /trades
   # GET /trades.json
   def index
-    @trades = Trade.order(time: :desc).paginate(page: params[:page], per_page: 100)
+    @trades = Trade.order(time: :desc).paginate(page: params[:page], per_page: 20)
   end
 
   # GET /trades/1

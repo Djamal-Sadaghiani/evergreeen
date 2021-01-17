@@ -9,10 +9,10 @@ class ProductsController < ApplicationController
     if params[:query].present?
 
       results = Product.search(params[:query]).map(&:id)
-      @products = Product.where(id: results).paginate(page: params[:page], per_page: 100)
+      @products = Product.where(id: results).paginate(page: params[:page], per_page: 20)
 
     else
-      @products = Product.all.order(recommendations: :asc).paginate(page: params[:page], per_page: 100)
+      @products = Product.all.order(recommendations: :asc).paginate(page: params[:page], per_page: 20)
     end
   end
 
@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @trades = @product.trades.order(time: :desc).limit(10)
-    @iframe_url = MetabaseUrlCreator.call(product_id: @product.id)
+    @iframe_url = MetabaseUrlCreator.call(product_id: @product.id, question_id: 12)
   end
 
   # GET /products/new
