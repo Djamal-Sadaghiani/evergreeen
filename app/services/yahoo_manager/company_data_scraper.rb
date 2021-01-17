@@ -4,6 +4,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'geocoder'
 require 'digest'
+require 'iso_country_codes'
 
 module YahooManager
   class CompanyDataScraper < ApplicationService
@@ -20,6 +21,7 @@ module YahooManager
       sector = get_sector
       employees = get_employees
       headquarter = get_country
+      country_code = IsoCountryCodes.search_by_name(headquarter).first&.alpha2
       website = get_website
       phone_number = get_phone_number
       lat = get_location&.first || 0.0
@@ -28,7 +30,8 @@ module YahooManager
       address = get_address
 
       { description: description, industry: industry, sector: sector, number_of_employees: employees,
-        headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid, address: address }
+        headquarter: headquarter, website: website, phone_number: phone_number, lat: lat, lng: lng, uuid: uuid, address: address,
+        country_code: country_code }
     end
 
     def get_companydata_by_ticker

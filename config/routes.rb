@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :income_statements
   root to: 'pages#home'
   get 'pages/impressum'
+  get 'pages/portfolio' => 'pages#portfolio'
   resources :trades
   resources :products
   devise_for :users
