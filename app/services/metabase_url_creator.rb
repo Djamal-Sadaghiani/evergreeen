@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'jwt'
 
 METABASE_SITE_URL = 'https://evergreeenreporting.herokuapp.com'
@@ -17,6 +19,6 @@ class MetabaseUrlCreator < ApplicationService
     }
     token = JWT.encode payload, ENV['METABASE_SECRET_KEY']
 
-    METABASE_SITE_URL + '/embed/question/' + token + '#bordered=true&titled=true'
+    "#{METABASE_SITE_URL}/embed/question/#{token}#bordered=true&titled=true"
   end
 end

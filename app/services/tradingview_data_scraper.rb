@@ -17,7 +17,8 @@ class TradingviewDataScraper < ApplicationService
     # tradingview_recommendation = get_recommendation
     # tradingview_net_recommendation_score = get_net_recommendation_score
 
-    { tradingview_recommendation: tradingview_recommendation, tradingview_net_recommendation_score: tradingview_net_recommendation_score }
+    { tradingview_recommendation: tradingview_recommendation,
+      tradingview_net_recommendation_score: tradingview_net_recommendation_score }
   end
 
   def get_tradingview_data_by_ticker
@@ -25,13 +26,12 @@ class TradingviewDataScraper < ApplicationService
     html_file = open(url).read
   end
 
-  def parse(responce, url:, data: {})
-  end
+  def parse(responce, url:, data: {}); end
 
   def get_net_recommendation_score
     positive = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C buyColor-4BaoBngr")]')&.text&.strip.to_f || 0
     neutral = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C neutralColor-15OoMFX9")]')&.text&.strip.to_f || 0
     negative = @data.xpath('//span[contains(@class, "counterNumber-3l14ys0C sellColor-2qa8ZOVt")]')&.text&.strip.to_f || 0
-    (positive - negative) / (positive + neutral + negative) if (positive + neutral + negative) > 0
+    (positive - negative) / (positive + neutral + negative) if (positive + neutral + negative).positive?
   end
 end
