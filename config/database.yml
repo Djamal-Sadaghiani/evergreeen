@@ -79,7 +79,5 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: evergreeen_production
-  username: evergreeen
-  password: <%= ENV['EVERGREEEN_DATABASE_PASSWORD'] %>
+  <<: *
+  url: <%= ENV['DATABASE_URL'] %>

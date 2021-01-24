@@ -21,5 +21,3 @@ class PagesController < ApplicationController
     @geo_split = MetabaseUrlCreator.call(user_id: current_user.id, question_id: 28, title: true)
   end
 end
-
-

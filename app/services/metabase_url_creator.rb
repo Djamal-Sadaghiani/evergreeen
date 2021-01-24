@@ -9,8 +9,8 @@ class MetabaseUrlCreator < ApplicationService
     @product_id = params[:product_id]
     @user_id = params[:user_id]
     @question_id = params[:question_id]
-    @options = {'product_id' => @product_id.to_s,
-                'user_id' => @user_id.to_s}
+    @options = { 'product_id' => @product_id.to_s,
+                 'user_id' => @user_id.to_s }
     @title = params[:title]
   end
 
